@@ -11,7 +11,7 @@ import com.shuishou.digitalmenu.ui.MainActivity;
  * Created by Administrator on 2017/1/24.
  */
 
-public class ChangeLanguageTextView extends android.support.v7.widget.AppCompatTextView {
+public class ChangeLanguageTextView extends androidx.appcompat.widget.AppCompatTextView {
     protected String txtFirstLanguageName;
     protected String txtSecondLanguageName;
 

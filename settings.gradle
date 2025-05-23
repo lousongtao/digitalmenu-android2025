@@ -1,1 +1,8 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal() // Add Gradle Plugin Portal for safety
+    }
+}
 include ':app'

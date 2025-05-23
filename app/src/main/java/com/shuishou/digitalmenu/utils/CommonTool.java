@@ -2,7 +2,7 @@ package com.shuishou.digitalmenu.utils;
 
 import android.content.Context;
 import android.os.Message;
-import android.support.v7.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog;
 import android.widget.Toast;
 
 import com.shuishou.digitalmenu.InstantValue;

@@ -1,6 +1,6 @@
 package com.shuishou.digitalmenu.ui;
 
-import android.support.v7.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;

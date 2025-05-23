@@ -1,7 +1,7 @@
 package com.shuishou.digitalmenu.http;
 
 import android.os.Handler;
-import android.support.v7.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog;
 import android.util.SparseArray;
 
 import com.shuishou.digitalmenu.R;

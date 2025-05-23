@@ -17,6 +17,7 @@ public class DigitalMenuApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
         FileLogHandlerConfiguration fileHandler = LoggerConfiguration.fileLogHandler(this);
         File dir = new File(InstantValue.ERRORLOGPATH);
         if (!dir.exists())

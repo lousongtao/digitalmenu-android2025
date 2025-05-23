@@ -2,8 +2,8 @@ package com.shuishou.digitalmenu.ui;
 
 import android.content.Context;
 import android.os.Handler;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.util.AttributeSet;
 import android.util.SparseArray;
 import android.view.View;

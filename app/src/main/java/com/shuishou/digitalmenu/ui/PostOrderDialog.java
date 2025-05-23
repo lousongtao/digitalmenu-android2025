@@ -6,7 +6,7 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -350,7 +350,7 @@ public class PostOrderDialog {
         dlg.dismiss();
     }
 
-    class DeskIcon extends android.support.v7.widget.AppCompatTextView{
+    class DeskIcon extends androidx.appcompat.widget.AppCompatTextView{
         private Desk desk;
         private boolean choosed;
         public DeskIcon(Context context, Desk desk){
