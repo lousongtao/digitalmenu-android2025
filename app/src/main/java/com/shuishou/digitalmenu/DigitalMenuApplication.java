@@ -1,6 +1,7 @@
 package com.shuishou.digitalmenu;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.shuishou.digitalmenu.io.CrashHandler;
 
@@ -8,6 +9,8 @@ import java.io.File;
 
 import pl.brightinventions.slf4android.FileLogHandlerConfiguration;
 import pl.brightinventions.slf4android.LoggerConfiguration;
+
+import androidx.multidex.MultiDex;
 
 /**
  * Created by Administrator on 2017/10/5.
@@ -27,5 +30,11 @@ public class DigitalMenuApplication extends Application {
         LoggerConfiguration.configuration().addHandlerToRootLogger(fileHandler);
         CrashHandler handler = CrashHandler.getInstance();
         handler.init(this);
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 }

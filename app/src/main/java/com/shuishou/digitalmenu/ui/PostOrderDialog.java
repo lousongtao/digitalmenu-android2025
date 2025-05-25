@@ -314,6 +314,8 @@ public class PostOrderDialog {
         int margin = 5;
         TableRow.LayoutParams trlp = new TableRow.LayoutParams();
         trlp.setMargins(margin, margin ,0 ,0);
+        // todo: 发现不同的设备上AlertDialog显示的宽度并不相同. 有的能够占满屏幕宽度, 有的只有半个屏幕宽度. 这个可能跟Android无关
+        // 应该是不同厂家做了调整. 这里不再使用DisplayMetrics.widthPixels, 改用dialog.getWidth
         DisplayMetrics displayMetrics = new DisplayMetrics();
         mainActivity.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int rowamount = 15;//每行显示15个桌子, 根据不同的分辨率, 计算deskicon的尺寸

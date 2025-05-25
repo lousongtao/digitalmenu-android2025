@@ -12,6 +12,7 @@ android {
         versionCode 20250522
         versionName "20250522"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner" // 更新为 AndroidX 测试框架
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -43,6 +44,7 @@ dependencies {
     implementation 'com.yanzhenjie.nohttp:nohttp:1.1.2'
     implementation 'com.yanzhenjie.nohttp:okhttp:1.1.2'
     implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'androidx.multidex:multidex:2.0.1'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
