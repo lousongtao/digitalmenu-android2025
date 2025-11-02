@@ -11,9 +11,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.util.DisplayMetrics;
@@ -21,6 +25,7 @@ import android.util.SparseArray;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
@@ -67,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String TAG_LOOKFOR = "lookfor";
     private String TAG_REFRESHDATA = "refreshdata";
     private String TAG_SERVERURL = "serverurl";
+    private String TAG_SETTING = "settings";
     private String TAG_RBFIRSTLANGUAGE = "rbFirstLanguage";
     private String TAG_RBSECONDLANGUAGE = "rbSecondLanguage";
     private String TAG_BTNORDER = "btnorder";
@@ -81,6 +87,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private View rightUpPanel;
     private View rightBottomPanel;
     private RecyclerView lvChoosedDish;
+    private DrawerLayout drawerLayout;
 
     private ArrayList<Desk> desks;
     private ArrayList<Flavor> flavors;
@@ -170,10 +177,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         TextView tvExit = (TextView)findViewById(R.id.drawermenu_exit);
         TextView tvUpgradeAPP = (TextView) findViewById(R.id.drawermenu_upgradeapp);
         TextView tvTest = (TextView) findViewById(R.id.drawermenu_test);
+        ImageButton btnSetting = findViewById(R.id.btnSettings);
         listViewCategorys = (CategoryTabListView) findViewById(R.id.categorytab_listview);
         ImageButton btnLookfor = (ImageButton)findViewById(R.id.btnLookforDish);
         rightUpPanel = findViewById(R.id.rightUpPanel);
         rightBottomPanel = findViewById(R.id.rightBottomPanel);
+        drawerLayout = findViewById(R.id.drawer_layout);
 
         tvUploadErrorLog.setTag(TAG_UPLOADERRORLOG);
         tvExit.setTag(TAG_EXITSYSTEM);
@@ -181,6 +190,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnLookfor.setTag(TAG_LOOKFOR);
         tvRefreshData.setTag(TAG_REFRESHDATA);
         tvServerURL.setTag(TAG_SERVERURL);
+        btnSetting.setTag(TAG_SETTING);
         tvTest.setTag("test");
         rbFirstLanguage.setTag(TAG_RBFIRSTLANGUAGE);
         rbSecondLanguage.setTag(TAG_RBSECONDLANGUAGE);
@@ -191,11 +201,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnLookfor.setOnClickListener(this);
         tvRefreshData.setOnClickListener(this);
         tvServerURL.setOnClickListener(this);
+        btnSetting.setOnClickListener(this);
         tvTest.setOnClickListener(this);
         rbFirstLanguage.setOnClickListener(this);
         rbSecondLanguage.setOnClickListener(this);
         btnOrder.setOnClickListener(this);
 
+        // 禁用左侧边缘滑出，仅允许代码打开 - Android 10 后, 系统增加了边缘滑动手势, 导致跟app的抽屉菜单冲突. 现在改为只有点设置按钮才可以弹出抽屉菜单
+        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, GravityCompat.START);
+        // Back 键优先关闭抽屉
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override public void handleOnBackPressed() {
+                if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                } else {
+                    setEnabled(false);
+                    getOnBackPressedDispatcher().onBackPressed();
+                }
+            }
+        });
         //init tool class, NoHttp
         NoHttp.initialize(this);
         Logger.setDebug(true);
@@ -696,6 +720,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (TAG_SERVERURL.equals(v.getTag())){
             SaveServerURLDialog dlg = new SaveServerURLDialog(MainActivity.this);
             dlg.showDialog();
+        } else if (TAG_SETTING.equals(v.getTag())){
+            if (!drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                drawerLayout.openDrawer(GravityCompat.START);
+            }
         } else if (TAG_RBFIRSTLANGUAGE.equals(v.getTag())){
             onChangeLanguage();
         } else if (TAG_RBSECONDLANGUAGE.equals(v.getTag())){

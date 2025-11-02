@@ -28,6 +28,7 @@ class DishCellComponent{
     private final View foodCellView;
     private Dish dish;
     private ImageView ivSoldOut;
+
     private TextView tvOldPrice;
     private LinearLayout foodcellPriceLayout;
     private TextView foodPriceText;

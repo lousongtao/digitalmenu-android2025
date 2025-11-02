@@ -34,26 +34,34 @@
             android:orientation="vertical">
 
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/rightUpPanel"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_gravity="bottom|right|end"
-                android:orientation="horizontal">
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:clipToPadding="true">
 
                 <RadioGroup
-                    android:layout_width="wrap_content"
+                    android:id="@+id/langRadioGroup"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:gravity="bottom|right|end"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:clipToPadding="true"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/btnSettings"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent">
 
                     <RadioButton
                         android:id="@+id/rbFirstLanguage"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:checked="true"
-                        android:textColor="@color/colorWhite"
-                        android:textColorLink="@color/colorWhite"
+                        android:textColor="@color/color_OrangeTheme_Category1Font"
+                        android:textColorLink="@color/color_OrangeTheme_Category1Font"
                         android:textSize="17sp"
                         android:textStyle="normal|bold" />
 
@@ -67,7 +75,17 @@
                         android:textStyle="bold" />
                 </RadioGroup>
 
-            </LinearLayout>
+                <ImageButton
+                    android:id="@+id/btnSettings"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="6dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:srcCompat="@drawable/ic_settings_24" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
