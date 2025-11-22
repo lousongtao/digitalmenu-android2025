@@ -9,8 +9,8 @@ android {
         applicationId "com.shuishou.digitalmenu"
         minSdk 19
         targetSdk 33
-        versionCode 20250522
-        versionName "20250522"
+        versionCode 20251121
+        versionName "20251121"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner" // 更新为 AndroidX 测试框架
         multiDexEnabled true
     }
